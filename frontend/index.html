@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Системный Аналитик</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">SA Portfolio</div>
+        <nav>
+            <button id="authBtn" class="btn-secondary" onclick="toggleAuthModal()">Войти</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Андрей Лобашев</h1>
+            <p class="subtitle">Системный аналитик | Проектирование API, БД и микросервисной архитектуры</p>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎯 Цель проекта</h3>
+                    <p>Демонстрация навыков проектирования: от ТЗ и ER-диаграмм до работающего API на FastAPI + MongoDB.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🛠 Стек</h3>
+                    <p>FastAPI, PostgreSQL, MongoDB, Redis, Docker, OpenAPI (Swagger).</p>
+                </div>
+                <div class="info-card">
+                    <h3>💼 Мой вклад</h3>
+                    <p>Сбор требований, проектирование схемы БД, написание OpenAPI контрактов, постановка задач на разработку.</p>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="changeBackgroundColor()">🎨 Сменить цвет фона</button>
+        </section>
+
+        <!-- Artifacts Section -->
+        <section class="artifacts-section">
+            <h2>Артефакты проекта</h2>
+            <div class="filters">
+                <select id="categoryFilter" onchange="loadArtifacts()">
+                    <option value="">Все категории</option>
+                    <option value="backend">Backend</option>
+                    <option value="architecture">Architecture</option>
+                </select>
+                <input type="text" id="tagFilter" placeholder="Поиск по тегу (например, docker)" oninput="loadArtifacts()">
+            </div>
+
+            <div id="artifactsGrid" class="artifacts-grid">
+                <!-- Сюда JS вставит карточки -->
+                <p class="loading">Загрузка артефактов...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleAuthModal()">&times;</span>
+            <h2 id="modalTitle">Вход</h2>
+            <form id="authForm" onsubmit="handleAuth(event)">
+                <input type="text" id="displayName" placeholder="Имя пользователя (для регистрации)" style="display:none;">
+                <input type="password" id="password" placeholder="Пароль" required>
+                <button type="submit" class="btn-primary" id="authSubmitBtn">Войти</button>
+            </form>
+            <p class="switch-auth" onclick="toggleAuthMode()">Нет аккаунта? Зарегистрироваться</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
